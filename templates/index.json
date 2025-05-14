@@ -9,59 +9,26 @@
  */
 {
   "sections": {
-    "slideshow_NVdrYT": {
-      "type": "slideshow",
+    "custom_slider_rCP6gV": {
+      "type": "custom-slider",
       "blocks": {
-        "slide_4HwDq4": {
+        "slide_fJYkpA": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/image_a06575b9-114e-4be0-b510-84e5407031fc.png",
-            "heading": "Diapositiva de imagen",
-            "heading_size": "h2",
-            "subheading": "Cuenta la historia de tu marca a través de imágenes",
-            "button_label": "Etiqueta de botón",
-            "link": "",
-            "button_style_secondary": false,
-            "box_align": "middle-center",
-            "show_text_box": true,
-            "text_alignment": "center",
-            "image_overlay_opacity": 0,
-            "color_scheme": "",
-            "text_alignment_mobile": "center"
-          }
-        },
-        "slide_bbax8d": {
-          "type": "slide",
-          "settings": {
-            "heading": "Diapositiva de imagen",
-            "heading_size": "h1",
-            "subheading": "Cuenta la historia de tu marca a través de imágenes",
-            "button_label": "Etiqueta de botón",
-            "link": "",
-            "button_style_secondary": false,
-            "box_align": "middle-center",
-            "show_text_box": true,
-            "text_alignment": "center",
-            "image_overlay_opacity": 0,
-            "color_scheme": "",
-            "text_alignment_mobile": "center"
+            "slide_image": "shopify://shop_images/image_a06575b9-114e-4be0-b510-84e5407031fc.png",
+            "heading": "Slide Heading",
+            "subheading": "Add your subheading text here",
+            "button_label": "Compra ahora",
+            "button_link": ""
           }
         }
       },
       "block_order": [
-        "slide_4HwDq4",
-        "slide_bbax8d"
+        "slide_fJYkpA"
       ],
-      "name": "t:sections.slideshow.presets.name",
+      "name": "Custom Slider",
       "settings": {
-        "layout": "full_bleed",
-        "slide_height": "medium",
-        "slider_visual": "dots",
-        "auto_rotate": false,
-        "change_slides_speed": 5,
-        "image_behavior": "ambient",
-        "show_text_below": true,
-        "accessibility_info": "Presentación de diapositivas sobre tu marca"
+        "background_color": "#ffffff"
       }
     },
     "image_banner": {
@@ -277,7 +244,7 @@
     }
   },
   "order": [
-    "slideshow_NVdrYT",
+    "custom_slider_rCP6gV",
     "image_banner",
     "rich_text",
     "featured_collection",

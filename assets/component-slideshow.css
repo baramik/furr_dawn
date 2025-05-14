@@ -1,4 +1,4 @@
-slideshow-component {
+/* slideshow-component {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -203,4 +203,4 @@ slideshow-component:not(.page-width) .slider-buttons {
   visibility: hidden;
   opacity: 0;
   transform: scale(0.8);
-}
+} */
