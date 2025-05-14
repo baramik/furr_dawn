@@ -3,11 +3,31 @@
     background-color: {{ section.settings.background_color }};
   }
 
-  /* Only custom CSS needed for pseudo-elements and specific Flickity overrides */
+  /* Flickity page dots custom styles */
+  .custom-slider-{{ section.id }} .flickity-page-dots {
+    bottom: 25px;
+  }
+
   .custom-slider-{{ section.id }} .flickity-page-dots .dot {
     width: 40px;
     height: 4px;
     margin: 0 4px;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 1;
+  }
+
+  .custom-slider-{{ section.id }} .flickity-page-dots .dot.is-selected {
+    background: white;
+  }
+
+  /* Flickity prev/next buttons custom styles */
+  .custom-slider-{{ section.id }} .flickity-button {
+    background: transparent;
+  }
+
+  .custom-slider-{{ section.id }} .flickity-button:hover {
+    background: transparent;
   }
 
   .custom-slider-{{ section.id }} .flickity-button-icon {
@@ -19,6 +39,8 @@
     position: absolute;
     width: 30px;
     height: 4px;
+    background: white;
+    border-radius: 2px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -27,19 +49,39 @@
   .custom-slider-{{ section.id }} .flickity-prev-next-button.previous::after {
     transform: translate(-50%, -50%) rotate(180deg);
   }
+
+  .custom-slider-{{ section.id }} .flickity-button:disabled {
+    opacity: 0.3;
+  }
+
+  .custom-slider-{{ section.id }} .flickity-slider {
+    transform: none !important;
+  }
+
+  .custom-slider-{{ section.id }} .slide {
+    width: 100%;
+    left: 0 !important;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .custom-slider-{{ section.id }} .slide.is-selected {
+    opacity: 1;
+  }
 {%- endstyle -%}
 
 <div class='custom-slider-{{ section.id }} twcss-w-full twcss-relative'>
   <div
     class='main-slider'
-    data-flickity='{ "cellAlign": "left", "contain": true, "prevNextButtons": true, "pageDots": true, "autoPlay": 5000, "wrapAround": true }'
+    data-flickity='{ "cellAlign": "left", "contain": true, "prevNextButtons": true, "pageDots": true, "autoPlay": 5000, "wrapAround": true, "fade": true }'
   >
     {%- for block in section.blocks -%}
-      <div class='twcss-w-full twcss-relative' {{ block.shopify_attributes }}>
+      <div class='slide twcss-w-full twcss-relative' {{ block.shopify_attributes }}>
         {%- if block.settings.slide_image -%}
           <div class='twcss-relative twcss-w-full twcss-h-[300px] md:twcss-h-[500px] lg:twcss-h-[600px]'>
+            {%- assign img_url = block.settings.slide_image | image_url: width: 2000 -%}
             <img
-              src='{{ block.settings.slide_image | img_url: 'master' }}'
+              src='{{ img_url }}'
               alt='{{ block.settings.heading | escape }}'
               class='twcss-absolute twcss-inset-0 twcss-w-full twcss-h-full twcss-object-cover'
               loading='lazy'
@@ -47,19 +89,6 @@
               height='600'
             >
             <div class='twcss-absolute twcss-inset-0 twcss-bg-black twcss-bg-opacity-40'></div>
-
-            <!-- Flickity Navigation Controls -->
-            <div class='flickity-page-dots twcss-absolute twcss-bottom-6 twcss-w-full twcss-flex twcss-justify-center twcss-z-10'>
-              <!-- Dots styled through custom CSS + Tailwind -->
-              <div class='dot twcss-rounded-sm twcss-bg-white/50 hover:twcss-bg-white/75'></div>
-            </div>
-
-            <button class='flickity-prev-next-button previous twcss-absolute twcss-left-4 twcss-bg-transparent hover:twcss-bg-transparent twcss-w-12 twcss-h-12 twcss-z-10'>
-              <span class='twcss-sr-only'>Previous</span>
-            </button>
-            <button class='flickity-prev-next-button next twcss-absolute twcss-right-4 twcss-bg-transparent hover:twcss-bg-transparent twcss-w-12 twcss-h-12 twcss-z-10'>
-              <span class='twcss-sr-only'>Next</span>
-            </button>
 
             <div class='twcss-absolute twcss-inset-0 twcss-flex twcss-items-center'>
               <div class='twcss-container twcss-mx-auto twcss-px-4 md:twcss-px-8'>
