@@ -3,125 +3,197 @@
     background-color: {{ section.settings.background_color }};
   }
 
-  /* Flickity page dots custom styles */
-  .custom-slider-{{ section.id }} .flickity-page-dots {
-    bottom: 25px;
-  }
-
-  .custom-slider-{{ section.id }} .flickity-page-dots .dot {
+  /* Swiper custom styles (keep your existing design tweaks) */
+  .custom-slider-{{ section.id }} .swiper-pagination-bullet {
     width: 40px;
     height: 4px;
     margin: 0 4px;
     border-radius: 2px;
     background: rgba(255, 255, 255, 0.5);
-    opacity: 1;
   }
 
-  .custom-slider-{{ section.id }} .flickity-page-dots .dot.is-selected {
+  .custom-slider-{{ section.id }} .swiper-pagination-bullet-active {
     background: white;
   }
 
-  /* Flickity prev/next buttons custom styles */
-  .custom-slider-{{ section.id }} .flickity-button {
-    background: transparent;
-  }
-
-  .custom-slider-{{ section.id }} .flickity-button:hover {
-    background: transparent;
-  }
-
-  .custom-slider-{{ section.id }} .flickity-button-icon {
-    display: none;
-  }
-
-  .custom-slider-{{ section.id }} .flickity-prev-next-button::after {
-    content: '';
-    position: absolute;
-    width: 30px;
-    height: 4px;
-    background: white;
-    border-radius: 2px;
+  .custom-slider-{{ section.id }} .swiper-button-next,
+  .custom-slider-{{ section.id }} .swiper-button-prev {
+    color: white;
+    width: 40px;
+    height: 40px;
     top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateY(-50%);
   }
 
-  .custom-slider-{{ section.id }} .flickity-prev-next-button.previous::after {
-    transform: translate(-50%, -50%) rotate(180deg);
-  }
-
-  .custom-slider-{{ section.id }} .flickity-button:disabled {
-    opacity: 0.3;
-  }
-
-  .custom-slider-{{ section.id }} .flickity-slider {
-    transform: none !important;
-  }
-
-  .custom-slider-{{ section.id }} .slide {
+  .custom-slider-{{ section.id }} .swiper-slide {
+    position: relative;
     width: 100%;
-    left: 0 !important;
     opacity: 0;
-    transition: opacity 0.3s;
+    transition: opacity 0.8s cubic-bezier(0.4,0,0.2,1);
+    background: transparent;
+    min-height: 0;
   }
 
-  .custom-slider-{{ section.id }} .slide.is-selected {
+  .custom-slider-{{ section.id }} .swiper-slide.swiper-slide-active {
     opacity: 1;
+  }
+
+  .custom-slider-{{ section.id }} .slide-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.32);
+    z-index: 1;
+  }
+
+  .custom-slider-{{ section.id }} .slide-content {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 5vw 0 2rem;
+  }
+
+  @media (max-width: 767px) {
+    .custom-slider-{{ section.id }} .slide-content {
+      justify-content: center;
+      padding: 0 1rem;
+    }
+    .custom-slider-{{ section.id }} .slide-inner {
+      text-align: center;
+      align-items: center;
+    }
+  }
+
+  .custom-slider-{{ section.id }} .slide-inner {
+    max-width: 700px;
+    margin-left: auto;
+    color: #fff;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1.5rem;
+  }
+
+  .custom-slider-{{ section.id }} .slide-eyebrow {
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    opacity: 0.8;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+
+  .custom-slider-{{ section.id }} .slide-heading {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.18);
+  }
+
+  @media (min-width: 768px) {
+    .custom-slider-{{ section.id }} .slide-heading {
+      font-size: 3.5rem;
+    }
+  }
+
+  .custom-slider-{{ section.id }} .slide-subheading {
+    font-size: 1.25rem;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  }
+
+  .custom-slider-{{ section.id }} .slide-btn {
+    background: #e5e7eb;
+    color: #222;
+    padding: 1.25rem 3rem;
+    border-radius: 0.75rem;
+    font-weight: 700;
+    font-size: 1.35rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.13);
+    transition: background 0.2s, color 0.2s;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .custom-slider-{{ section.id }} .slide-btn:hover {
+    background: #fff;
+    color: #111;
   }
 {%- endstyle -%}
 
-<div class='custom-slider-{{ section.id }} twcss-w-full twcss-relative'>
-  <div
-    class='main-slider'
-    data-flickity='{ "cellAlign": "left", "contain": true, "prevNextButtons": true, "pageDots": true, "autoPlay": 5000, "wrapAround": true, "fade": true }'
-  >
-    {%- for block in section.blocks -%}
-      <div class='slide twcss-w-full twcss-relative' {{ block.shopify_attributes }}>
-        {%- if block.settings.slide_image -%}
-          <div class='twcss-relative twcss-w-full twcss-h-[300px] md:twcss-h-[500px] lg:twcss-h-[600px]'>
-            {%- assign img_url = block.settings.slide_image | image_url: width: 2000 -%}
+<div class='custom-slider-{{ section.id }} twcss-w-full'>
+  <div class='swiper'>
+    <div class='swiper-wrapper'>
+      {%- for block in section.blocks -%}
+        <div
+          class='swiper-slide twcss-w-full twcss-h-[350px] md:twcss-h-[500px] lg:twcss-h-[600px]'
+          {{ block.shopify_attributes }}
+        >
+          {%- if block.settings.slide_image -%}
             <img
-              src='{{ img_url }}'
+              src='{{ block.settings.slide_image | image_url: width: 2000, crop: 'center' }}'
               alt='{{ block.settings.heading | escape }}'
-              class='twcss-absolute twcss-inset-0 twcss-w-full twcss-h-full twcss-object-cover'
+              class='twcss-w-full twcss-h-full twcss-object-cover twcss-block'
               loading='lazy'
-              width='1920'
-              height='600'
+              width='2000'
+              height='1000'
             >
-            <div class='twcss-absolute twcss-inset-0 twcss-bg-black twcss-bg-opacity-40'></div>
-
-            <div class='twcss-absolute twcss-inset-0 twcss-flex twcss-items-center'>
-              <div class='twcss-container twcss-mx-auto twcss-px-4 md:twcss-px-8'>
-                <div class='twcss-text-center md:twcss-text-left twcss-max-w-3xl'>
-                  {%- if block.settings.heading != blank -%}
-                    <h2 class='twcss-text-3xl md:twcss-text-5xl twcss-font-bold twcss-text-white twcss-mb-4 twcss-shadow-lg'>
-                      {{ block.settings.heading }}
-                    </h2>
-                  {%- endif -%}
-
-                  {%- if block.settings.subheading != blank -%}
-                    <p class='twcss-text-lg md:twcss-text-xl twcss-text-white twcss-mb-6 twcss-shadow-md'>
-                      {{ block.settings.subheading }}
-                    </p>
-                  {%- endif -%}
-
-                  {%- if block.settings.button_label != blank and block.settings.button_link != blank -%}
-                    <a
-                      href='{{ block.settings.button_link }}'
-                      class='twcss-inline-block twcss-bg-white twcss-text-black twcss-px-8 twcss-py-3 twcss-rounded-full twcss-font-semibold twcss-transition twcss-duration-300 hover:twcss-bg-gray-100 twcss-shadow-md'
-                    >
-                      {{ block.settings.button_label }}
-                    </a>
-                  {%- endif -%}
-                </div>
+            <div class='slide-overlay'></div>
+            <div class='slide-content'>
+              <div class='slide-inner'>
+                {%- if block.settings.eyebrow != blank -%}
+                  <div class='slide-eyebrow'>{{ block.settings.eyebrow }}</div>
+                {%- endif -%}
+                {%- if block.settings.heading != blank -%}
+                  <div class='slide-heading'>{{ block.settings.heading }}</div>
+                {%- endif -%}
+                {%- if block.settings.subheading != blank -%}
+                  <div class='slide-subheading'>{{ block.settings.subheading }}</div>
+                {%- endif -%}
+                {%- if block.settings.button_label != blank and block.settings.button_link != blank -%}
+                  <a
+                    href='{{ block.settings.button_link }}'
+                    class='slide-btn'
+                  >
+                    {{ block.settings.button_label }}
+                  </a>
+                {%- endif -%}
               </div>
             </div>
-          </div>
-        {%- endif -%}
-      </div>
-    {%- endfor -%}
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+    <!-- Swiper navigation and pagination -->
+    <div class='swiper-pagination'></div>
+    <div class='swiper-button-prev'></div>
+    <div class='swiper-button-next'></div>
   </div>
 </div>
+
+<script defer>
+  document.addEventListener('DOMContentLoaded', function () {
+    var swiper = new Swiper('.custom-slider-{{ section.id }} .swiper', {
+      loop: true,
+      autoplay: { delay: {{ section.settings.slide_interval | default: 5000 }} },
+      speed: 800,
+      navigation: {
+        nextEl: '.custom-slider-{{ section.id }} .swiper-button-next',
+        prevEl: '.custom-slider-{{ section.id }} .swiper-button-prev',
+      },
+      pagination: {
+        el: '.custom-slider-{{ section.id }} .swiper-pagination',
+        clickable: true,
+      },
+      slidesPerView: 1,
+      effect: 'slide',
+    });
+  });
+</script>
 
 {% schema %}
 {
@@ -137,6 +209,12 @@
       "id": "background_color",
       "label": "Background Color",
       "default": "#ffffff"
+    },
+    {
+      "type": "number",
+      "id": "slide_interval",
+      "label": "Slide Switch Interval (ms)",
+      "default": 5000
     }
   ],
   "blocks": [
@@ -149,6 +227,12 @@
           "type": "image_picker",
           "id": "slide_image",
           "label": "Slide Image"
+        },
+        {
+          "type": "text",
+          "id": "eyebrow",
+          "label": "Eyebrow (small text above heading)",
+          "default": "ICONIC THEN. ESSENTIAL NOW."
         },
         {
           "type": "text",

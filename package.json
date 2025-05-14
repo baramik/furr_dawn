@@ -7,7 +7,7 @@
     "dev": "npx tailwindcss -c tailwind.config.js -i ./assets/app-tailwind.css -o ./assets/app.css --watch",
     "prepare": "husky install",
     "test": "echo \"Error: no test specified\" && exit 1"
-  },  
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/TrellisCommerce/shopify-dawn-tailwind-starter-base.git"
@@ -27,7 +27,9 @@
     "tailwindcss": "^3.4.1"
   },
   "dependencies": {
-    "@trelliscommerce/prettier-config": "^1.0.0"
+    "@trelliscommerce/prettier-config": "^1.0.0",
+    "flickity": "^3.0.0",
+    "swiper": "^11.2.6"
   },
   "prettier": "@trelliscommerce/prettier-config",
   "lint-staged": {
