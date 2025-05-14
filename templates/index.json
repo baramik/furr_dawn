@@ -15,8 +15,9 @@
         "slide_4HwDq4": {
           "type": "slide",
           "settings": {
+            "image": "shopify://shop_images/image_1539b401-039c-4619-9fef-82f43a34d80e.png",
             "heading": "Diapositiva de imagen",
-            "heading_size": "h1",
+            "heading_size": "h2",
             "subheading": "Cuenta la historia de tu marca a través de imágenes",
             "button_label": "Etiqueta de botón",
             "link": "",
