@@ -19,7 +19,7 @@
             "heading": "Slide Heading",
             "subheading": "Add your subheading text here",
             "button_label": "Compra ahora",
-            "button_link": ""
+            "button_link": "shopify://collections"
           }
         }
       },
