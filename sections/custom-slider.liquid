@@ -1,0 +1,155 @@
+{%- style -%}
+  .custom-slider-{{ section.id }} {
+    background-color: {{ section.settings.background_color }};
+  }
+
+  /* Only custom CSS needed for pseudo-elements and specific Flickity overrides */
+  .custom-slider-{{ section.id }} .flickity-page-dots .dot {
+    width: 40px;
+    height: 4px;
+    margin: 0 4px;
+  }
+
+  .custom-slider-{{ section.id }} .flickity-button-icon {
+    display: none;
+  }
+
+  .custom-slider-{{ section.id }} .flickity-prev-next-button::after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 4px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .custom-slider-{{ section.id }} .flickity-prev-next-button.previous::after {
+    transform: translate(-50%, -50%) rotate(180deg);
+  }
+{%- endstyle -%}
+
+<div class='custom-slider-{{ section.id }} twcss-w-full twcss-relative'>
+  <div
+    class='main-slider'
+    data-flickity='{ "cellAlign": "left", "contain": true, "prevNextButtons": true, "pageDots": true, "autoPlay": 5000, "wrapAround": true }'
+  >
+    {%- for block in section.blocks -%}
+      <div class='twcss-w-full twcss-relative' {{ block.shopify_attributes }}>
+        {%- if block.settings.slide_image -%}
+          <div class='twcss-relative twcss-w-full twcss-h-[300px] md:twcss-h-[500px] lg:twcss-h-[600px]'>
+            <img
+              src='{{ block.settings.slide_image | img_url: 'master' }}'
+              alt='{{ block.settings.heading | escape }}'
+              class='twcss-absolute twcss-inset-0 twcss-w-full twcss-h-full twcss-object-cover'
+              loading='lazy'
+              width='1920'
+              height='600'
+            >
+            <div class='twcss-absolute twcss-inset-0 twcss-bg-black twcss-bg-opacity-40'></div>
+
+            <!-- Flickity Navigation Controls -->
+            <div class='flickity-page-dots twcss-absolute twcss-bottom-6 twcss-w-full twcss-flex twcss-justify-center twcss-z-10'>
+              <!-- Dots styled through custom CSS + Tailwind -->
+              <div class='dot twcss-rounded-sm twcss-bg-white/50 hover:twcss-bg-white/75'></div>
+            </div>
+
+            <button class='flickity-prev-next-button previous twcss-absolute twcss-left-4 twcss-bg-transparent hover:twcss-bg-transparent twcss-w-12 twcss-h-12 twcss-z-10'>
+              <span class='twcss-sr-only'>Previous</span>
+            </button>
+            <button class='flickity-prev-next-button next twcss-absolute twcss-right-4 twcss-bg-transparent hover:twcss-bg-transparent twcss-w-12 twcss-h-12 twcss-z-10'>
+              <span class='twcss-sr-only'>Next</span>
+            </button>
+
+            <div class='twcss-absolute twcss-inset-0 twcss-flex twcss-items-center'>
+              <div class='twcss-container twcss-mx-auto twcss-px-4 md:twcss-px-8'>
+                <div class='twcss-text-center md:twcss-text-left twcss-max-w-3xl'>
+                  {%- if block.settings.heading != blank -%}
+                    <h2 class='twcss-text-3xl md:twcss-text-5xl twcss-font-bold twcss-text-white twcss-mb-4 twcss-shadow-lg'>
+                      {{ block.settings.heading }}
+                    </h2>
+                  {%- endif -%}
+
+                  {%- if block.settings.subheading != blank -%}
+                    <p class='twcss-text-lg md:twcss-text-xl twcss-text-white twcss-mb-6 twcss-shadow-md'>
+                      {{ block.settings.subheading }}
+                    </p>
+                  {%- endif -%}
+
+                  {%- if block.settings.button_label != blank and block.settings.button_link != blank -%}
+                    <a
+                      href='{{ block.settings.button_link }}'
+                      class='twcss-inline-block twcss-bg-white twcss-text-black twcss-px-8 twcss-py-3 twcss-rounded-full twcss-font-semibold twcss-transition twcss-duration-300 hover:twcss-bg-gray-100 twcss-shadow-md'
+                    >
+                      {{ block.settings.button_label }}
+                    </a>
+                  {%- endif -%}
+                </div>
+              </div>
+            </div>
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Custom Slider",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "limit": 5,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "slide_image",
+          "label": "Slide Image"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Slide Heading"
+        },
+        {
+          "type": "textarea",
+          "id": "subheading",
+          "label": "Subheading",
+          "default": "Add your subheading text here"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button Label"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Slider",
+      "blocks": [
+        {
+          "type": "slide"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
