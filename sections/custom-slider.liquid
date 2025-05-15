@@ -138,10 +138,10 @@
             <img
               src='{{ block.settings.slide_image | image_url: width: 2000, crop: 'center' }}'
               alt='{{ block.settings.heading | escape }}'
-              class='twcss-w-full twcss-h-full twcss-object-cover twcss-block'
+              class='twcss-h-full twcss-object-contain twcss-mx-auto'
               loading='lazy'
               width='2000'
-              height='650'
+              height='900'
             >
             <div class='slide-overlay'></div>
             <div class='slide-content'>
@@ -180,7 +180,7 @@
   document.addEventListener('DOMContentLoaded', function () {
     var swiper = new Swiper('.custom-slider-{{ section.id }} .swiper', {
       loop: true,
-      autoplay: { delay: {{ section.settings.slide_interval | default: 5000 }} },
+      autoplay: false,
       speed: 800,
       navigation: {
         nextEl: '.custom-slider-{{ section.id }} .swiper-button-next',
