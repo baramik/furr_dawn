@@ -23,16 +23,6 @@
             "button_link": "shopify://collections"
           }
         },
-        "slide_e7UpFM": {
-          "type": "slide",
-          "settings": {
-            "eyebrow": "ICONIC THEN. ESSENTIAL NOW.",
-            "heading": "Slide Heading",
-            "subheading": "Add your subheading text here",
-            "button_label": "",
-            "button_link": ""
-          }
-        },
         "slide_zVUViT": {
           "type": "slide",
           "settings": {
@@ -40,14 +30,13 @@
             "eyebrow": "ICONIC THEN. ESSENTIAL NOW.",
             "heading": "Slide Heading",
             "subheading": "Add your subheading text here",
-            "button_label": "",
-            "button_link": ""
+            "button_label": "Compra ahora",
+            "button_link": "shopify://products/gf-pet-elastofit-ice-vest"
           }
         }
       },
       "block_order": [
         "slide_fJYkpA",
-        "slide_e7UpFM",
         "slide_zVUViT"
       ],
       "name": "Custom Slider",
