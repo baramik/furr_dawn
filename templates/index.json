@@ -12,34 +12,48 @@
     "custom_slider_rCP6gV": {
       "type": "custom-slider",
       "blocks": {
-        "slide_yVQXqx": {
-          "type": "slide",
-          "settings": {
-            "slide_image": "shopify://shop_images/image_a06575b9-114e-4be0-b510-84e5407031fc.png",
-            "heading": "Slide Heading",
-            "subheading": "Add your subheading text here",
-            "button_label": "Compra manana",
-            "button_link": "shopify://products/12x-mix-of-cherie-flavors-first-course-2-free-tuna-fillets"
-          }
-        },
         "slide_fJYkpA": {
           "type": "slide",
           "settings": {
             "slide_image": "shopify://shop_images/image_af37efae-7e3b-4861-a0f7-ea3535666368.png",
+            "eyebrow": "ICONIC THEN. ESSENTIAL NOW.",
             "heading": "Slide Heading",
             "subheading": "Add your subheading text here",
             "button_label": "Compra ahora",
             "button_link": "shopify://collections"
           }
+        },
+        "slide_e7UpFM": {
+          "type": "slide",
+          "settings": {
+            "eyebrow": "ICONIC THEN. ESSENTIAL NOW.",
+            "heading": "Slide Heading",
+            "subheading": "Add your subheading text here",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "slide_zVUViT": {
+          "type": "slide",
+          "settings": {
+            "slide_image": "shopify://shop_images/image_a06575b9-114e-4be0-b510-84e5407031fc.png",
+            "eyebrow": "ICONIC THEN. ESSENTIAL NOW.",
+            "heading": "Slide Heading",
+            "subheading": "Add your subheading text here",
+            "button_label": "",
+            "button_link": ""
+          }
         }
       },
       "block_order": [
-        "slide_yVQXqx",
-        "slide_fJYkpA"
+        "slide_fJYkpA",
+        "slide_e7UpFM",
+        "slide_zVUViT"
       ],
       "name": "Custom Slider",
       "settings": {
-        "background_color": "#ffffff"
+        "background_color": "#ffffff",
+        "slide_interval": 5000
       }
     },
     "image_banner": {
