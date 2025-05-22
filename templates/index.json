@@ -66,8 +66,8 @@
       "settings": {
         "background_color": "#ffffff",
         "text_color": "#ffffff",
-        "heading_font": "Google Montserrat",
-        "body_font": "Google Open Sans",
+        "heading_font": "Kefir",
+        "body_font": "Kefir",
         "slide_interval": 5000
       }
     },
