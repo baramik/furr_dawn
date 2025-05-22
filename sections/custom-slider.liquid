@@ -34,13 +34,18 @@
     background-color: {{ section.settings.background_color }};
     position: relative;
     width: 100vw;
-    height: calc(100vh - 40px); /* Subtract announcement bar height */
+    {% if section.settings.has_announcement_bar %}
+      height: calc(100vh - 40px);
+    {% else %}
+      height: 100vh;
+    {% endif %}
     margin: 0;
     padding: 0;
     left: 50%;
     right: 50%;
     margin-left: -50vw;
     margin-right: -50vw;
+    overflow: hidden;
   }
 
   /* Swiper custom styles (keep your existing design tweaks) */
@@ -262,6 +267,12 @@
     "groups": ["header", "footer"]
   },
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "has_announcement_bar",
+      "label": "Subtract announcement bar height (40px)?",
+      "default": true
+    },
     {
       "type": "color",
       "id": "background_color",
