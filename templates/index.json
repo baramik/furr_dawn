@@ -16,6 +16,7 @@
           "type": "slide",
           "settings": {
             "slide_image": "shopify://shop_images/GATO.png",
+            "mobile_slide_image": "shopify://shop_images/GATO.png",
             "eyebrow": "Nutrición felina hecha con propósito",
             "heading": "Comida perfecta para tu gato",
             "subheading": "Preparado con amor felino y un toque gourmet",
@@ -64,6 +65,7 @@
       ],
       "name": "Custom Slider",
       "settings": {
+        "has_announcement_bar": true,
         "background_color": "#ffffff",
         "text_color": "#ffffff",
         "heading_font": "Kefir",
