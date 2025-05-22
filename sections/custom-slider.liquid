@@ -272,7 +272,7 @@
 <style>
   @media (max-width: 767px) {
     .custom-slider-{{ section.id }} {
-      height: auto !important;
+      {% comment %} height: auto !important; {% endcomment %}
       min-height: unset !important;
       max-height: 400px;
     }
