@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "npx tailwindcss -c tailwind.config.js -i ./assets/app-tailwind.css -o ./assets/app.css --watch",
+    "build": "npx tailwindcss -c tailwind.config.js -i ./assets/app-tailwind.css -o ./assets/app.css --minify",
     "prepare": "husky install",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
