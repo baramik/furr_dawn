@@ -181,14 +181,22 @@
           {{ block.shopify_attributes }}
         >
           {%- if block.settings.slide_image -%}
-            <img
-              src='{{ block.settings.slide_image | image_url: width: 2000, crop: 'center' }}'
-              alt='{{ block.settings.heading | escape }}'
-              class='twcss-h-full twcss-w-full twcss-object-cover'
-              loading='lazy'
-              width='2000'
-              height='900'
-            >
+            <picture>
+              {%- if block.settings.mobile_slide_image -%}
+                <source
+                  srcset='{{ block.settings.mobile_slide_image | image_url: width: 900, crop: 'center' }}'
+                  media='(max-width: 767px)'
+                >
+              {%- endif -%}
+              <img
+                src='{{ block.settings.slide_image | image_url: width: 2000, crop: 'center' }}'
+                alt='{{ block.settings.heading | escape }}'
+                class='twcss-h-full twcss-w-full twcss-object-cover'
+                loading='lazy'
+                width='2000'
+                height='900'
+              >
+            </picture>
             <div class='slide-overlay'></div>
             <div class='slide-content'>
               <div class='slide-inner'>
@@ -319,6 +327,12 @@
           "type": "image_picker",
           "id": "slide_image",
           "label": "Slide Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_slide_image",
+          "label": "Mobile Slide Image (optional)",
+          "info": "Upload a separate image for mobile devices. If not set, the main slide image will be used."
         },
         {
           "type": "text",
