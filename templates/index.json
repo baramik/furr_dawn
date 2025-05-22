@@ -44,7 +44,7 @@
         "background_color": "#ffffff",
         "text_color": "#ffffff",
         "button_background_color": "#f426e9",
-        "button_text_color": "#222222",
+        "button_text_color": "#f9f9f9",
         "button_background_color_hover": "#d500ff",
         "button_text_color_hover": "#ffffff",
         "slide_interval": 5000
