@@ -74,6 +74,44 @@
         "slide_interval": 5000
       }
     },
+    "grid_sections_Ud8xpK": {
+      "type": "grid-sections",
+      "blocks": {
+        "grid_item_t9aQiX": {
+          "type": "grid_item",
+          "settings": {
+            "background_color": "#ffffff",
+            "heading": "Grid Item Heading",
+            "text": "<p>Share information about your brand or products.</p>",
+            "button_label": "Learn More",
+            "button_link": "",
+            "button_color": "#000000",
+            "button_text_color": "#ffffff"
+          }
+        },
+        "grid_item_cpFUgM": {
+          "type": "grid_item",
+          "settings": {
+            "background_color": "#ffffff",
+            "heading": "Grid Item Heading",
+            "text": "<p>Share information about your brand or products.</p>",
+            "button_label": "Learn More",
+            "button_link": "",
+            "button_color": "#000000",
+            "button_text_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "grid_item_t9aQiX",
+        "grid_item_cpFUgM"
+      ],
+      "name": "Grid Sections",
+      "settings": {
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "image_banner": {
       "type": "image-banner",
       "blocks": {
@@ -288,6 +326,7 @@
   },
   "order": [
     "custom_slider_rCP6gV",
+    "grid_sections_Ud8xpK",
     "image_banner",
     "rich_text",
     "featured_collection",
