@@ -121,8 +121,6 @@
   }
 
   .custom-slider-{{ section.id }} .slide-btn {
-    background: {{ section.settings.button_background_color }};
-    color: {{ section.settings.button_text_color }};
     padding: 1.5rem 4rem;
     border-radius: 1rem;
     font-weight: 700;
@@ -134,8 +132,6 @@
   }
 
   .custom-slider-{{ section.id }} .slide-btn:hover {
-    background: {{ section.settings.button_background_color_hover }};
-    color: {{ section.settings.button_text_color_hover }};
     transform: translateY(-2px);
     box-shadow: 0 4px 20px rgba(0,0,0,0.2);
   }
@@ -174,6 +170,9 @@
                   <a
                     href='{{ block.settings.button_link }}'
                     class='slide-btn'
+                    style='background: {{ block.settings.button_background_color }}; color: {{ block.settings.button_text_color }};'
+                    onmouseover="this.style.background='{{ block.settings.button_background_color_hover }}'; this.style.color='{{ block.settings.button_text_color_hover }}';"
+                    onmouseout="this.style.background='{{ block.settings.button_background_color }}'; this.style.color='{{ block.settings.button_text_color }}';"
                   >
                     {{ block.settings.button_label }}
                   </a>
@@ -233,30 +232,6 @@
       "default": "#ffffff"
     },
     {
-      "type": "color",
-      "id": "button_background_color",
-      "label": "Button Background Color",
-      "default": "#e5e7eb"
-    },
-    {
-      "type": "color",
-      "id": "button_text_color",
-      "label": "Button Text Color",
-      "default": "#222222"
-    },
-    {
-      "type": "color",
-      "id": "button_background_color_hover",
-      "label": "Button Background Color (Hover)",
-      "default": "#ffffff"
-    },
-    {
-      "type": "color",
-      "id": "button_text_color_hover",
-      "label": "Button Text Color (Hover)",
-      "default": "#111111"
-    },
-    {
       "type": "number",
       "id": "slide_interval",
       "label": "Slide Switch Interval (ms)",
@@ -301,6 +276,30 @@
           "type": "url",
           "id": "button_link",
           "label": "Button Link"
+        },
+        {
+          "type": "color",
+          "id": "button_background_color",
+          "label": "Button Background Color",
+          "default": "#e5e7eb"
+        },
+        {
+          "type": "color",
+          "id": "button_text_color",
+          "label": "Button Text Color",
+          "default": "#222222"
+        },
+        {
+          "type": "color",
+          "id": "button_background_color_hover",
+          "label": "Button Background Color (Hover)",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "button_text_color_hover",
+          "label": "Button Text Color (Hover)",
+          "default": "#111111"
         }
       ]
     }
