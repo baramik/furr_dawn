@@ -98,40 +98,42 @@
   style='padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;'
 >
   <div class='page-width'>
-    <div class='grid grid-cols-1 md:grid-cols-2 gap-6'>
+    <div class='twcss-grid twcss-grid-cols-1 md:twcss-grid-cols-2 twcss-gap-6'>
       {% for block in section.blocks %}
         {% if block.type == 'grid_item' %}
           <div
-            class='grid-item relative min-h-[400px] rounded-lg overflow-hidden'
+            class='grid-item twcss-relative twcss-min-h-[400px] twcss-rounded-lg twcss-overflow-hidden'
             style='background-color: {{ block.settings.background_color }};'
             {{ block.shopify_attributes }}
           >
             {% if block.settings.background_image %}
-              <div class='absolute inset-0 z-0'>
+              <div class='twcss-absolute twcss-inset-0 twcss-z-0'>
                 {{
                   block.settings.background_image
                   | image_url: width: 1000
-                  | image_tag: loading: 'lazy', class: 'w-full h-full object-cover'
+                  | image_tag: loading: 'lazy', class: 'twcss-w-full twcss-h-full twcss-object-cover'
                 }}
               </div>
             {% endif %}
 
-            <div class='relative z-10 p-8 flex flex-col h-full'>
+            <div class='twcss-relative twcss-z-10 twcss-p-8 twcss-flex twcss-flex-col twcss-h-full twcss-items-center twcss-justify-center twcss-text-center'>
               {% if block.settings.heading != blank %}
-                <h2 class='text-2xl md:text-3xl font-bold mb-4'>{{ block.settings.heading }}</h2>
+                <h2 class='twcss-text-2xl md:twcss-text-3xl twcss-font-bold twcss-mb-4'>
+                  {{ block.settings.heading }}
+                </h2>
               {% endif %}
 
               {% if block.settings.text != blank %}
-                <div class='prose mb-6'>
+                <div class='twcss-prose twcss-mb-6 twcss-max-w-md'>
                   {{ block.settings.text }}
                 </div>
               {% endif %}
 
               {% if block.settings.button_label != blank and block.settings.button_link != blank %}
-                <div class='mt-auto'>
+                <div class='twcss-mt-6'>
                   <a
                     href='{{ block.settings.button_link }}'
-                    class='inline-block px-6 py-3 rounded-md font-medium transition-colors'
+                    class='twcss-inline-block twcss-px-6 twcss-py-3 twcss-rounded-md twcss-font-medium twcss-transition-colors'
                     style='background-color: {{ block.settings.button_color }}; color: {{ block.settings.button_text_color }};'
                   >
                     {{ block.settings.button_label }}
