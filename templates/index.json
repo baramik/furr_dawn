@@ -32,9 +32,10 @@
           "type": "slide",
           "settings": {
             "slide_image": "shopify://shop_images/Ultra_HD_4K_2.png",
-            "eyebrow": "ICONIC THEN. ESSENTIAL NOW.",
-            "heading": "Slide Heading",
-            "subheading": "Add your subheading text here",
+            "mobile_slide_image": "shopify://shop_images/PERRO-MOBILE.png",
+            "eyebrow": "Para días calurosos de verano",
+            "heading": "El chaleco que tu perro necesita",
+            "subheading": "Menos jadeos, más frescura",
             "button_label": "Compra ahora",
             "button_link": "shopify://products/gf-pet-elastofit-ice-vest",
             "button_background_color": "#ef19d8",
