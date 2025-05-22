@@ -1,9 +1,23 @@
 {%- style -%}
   .custom-slider-{{ section.id }} {
     background-color: {{ section.settings.background_color }};
+    position: relative;
+    width: 100vw;
+    height: calc(100vh - 40px); /* Subtract announcement bar height */
+    margin: 0;
+    padding: 0;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
   }
 
   /* Swiper custom styles (keep your existing design tweaks) */
+  .custom-slider-{{ section.id }} .swiper {
+    width: 100%;
+    height: 100%;
+  }
+
   .custom-slider-{{ section.id }} .swiper-pagination-bullet {
     width: 40px;
     height: 4px;
@@ -28,11 +42,10 @@
   .custom-slider-{{ section.id }} .swiper-slide {
     position: relative;
     width: 100%;
+    height: 100%;
     opacity: 0;
     transition: opacity 0.8s cubic-bezier(0.4,0,0.2,1);
     background: transparent;
-    min-height: 0;
-    max-height: 600px;
   }
 
   .custom-slider-{{ section.id }} .swiper-slide.swiper-slide-active {
@@ -53,7 +66,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    padding: 0 5vw 0 2rem;
+    padding: 0 10vw 0 2rem;
   }
 
   @media (max-width: 767px) {
@@ -68,18 +81,18 @@
   }
 
   .custom-slider-{{ section.id }} .slide-inner {
-    max-width: 700px;
+    max-width: 800px;
     margin-left: auto;
-    color: #fff;
+    color: {{ section.settings.text_color }};
     text-align: right;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    gap: 1.5rem;
+    gap: 2rem;
   }
 
   .custom-slider-{{ section.id }} .slide-eyebrow {
-    font-size: 1rem;
+    font-size: 1.25rem;
     letter-spacing: 0.1em;
     opacity: 0.8;
     margin-bottom: 0.5rem;
@@ -87,7 +100,7 @@
   }
 
   .custom-slider-{{ section.id }} .slide-heading {
-    font-size: 2.5rem;
+    font-size: 3.5rem;
     font-weight: 700;
     line-height: 1.1;
     margin-bottom: 1rem;
@@ -96,49 +109,51 @@
 
   @media (min-width: 768px) {
     .custom-slider-{{ section.id }} .slide-heading {
-      font-size: 3.5rem;
+      font-size: 4.5rem;
     }
   }
 
   .custom-slider-{{ section.id }} .slide-subheading {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     font-weight: 400;
     margin-bottom: 1.5rem;
     text-shadow: 0 2px 8px rgba(0,0,0,0.12);
   }
 
   .custom-slider-{{ section.id }} .slide-btn {
-    background: #e5e7eb;
-    color: #222;
-    padding: 1.25rem 3rem;
-    border-radius: 0.75rem;
+    background: {{ section.settings.button_background_color }};
+    color: {{ section.settings.button_text_color }};
+    padding: 1.5rem 4rem;
+    border-radius: 1rem;
     font-weight: 700;
-    font-size: 1.35rem;
+    font-size: 1.5rem;
     box-shadow: 0 2px 12px rgba(0,0,0,0.13);
-    transition: background 0.2s, color 0.2s;
+    transition: all 0.2s ease;
     text-decoration: none;
     display: inline-block;
   }
 
   .custom-slider-{{ section.id }} .slide-btn:hover {
-    background: #fff;
-    color: #111;
+    background: {{ section.settings.button_background_color_hover }};
+    color: {{ section.settings.button_text_color_hover }};
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
   }
 {%- endstyle -%}
 
-<div class='custom-slider-{{ section.id }} twcss-w-full twcss-mb-20'>
+<div class='custom-slider-{{ section.id }}'>
   <div class='swiper'>
     <div class='swiper-wrapper'>
       {%- for block in section.blocks -%}
         <div
-          class='swiper-slide twcss-w-full twcss-h-[350px] md:twcss-h-[500px] lg:twcss-h-[600px]'
+          class='swiper-slide'
           {{ block.shopify_attributes }}
         >
           {%- if block.settings.slide_image -%}
             <img
               src='{{ block.settings.slide_image | image_url: width: 2000, crop: 'center' }}'
               alt='{{ block.settings.heading | escape }}'
-              class='twcss-h-full twcss-object-contain twcss-mx-auto'
+              class='twcss-h-full twcss-w-full twcss-object-cover'
               loading='lazy'
               width='2000'
               height='900'
@@ -210,6 +225,36 @@
       "id": "background_color",
       "label": "Background Color",
       "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_background_color",
+      "label": "Button Background Color",
+      "default": "#e5e7eb"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#222222"
+    },
+    {
+      "type": "color",
+      "id": "button_background_color_hover",
+      "label": "Button Background Color (Hover)",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color_hover",
+      "label": "Button Text Color (Hover)",
+      "default": "#111111"
     },
     {
       "type": "number",
