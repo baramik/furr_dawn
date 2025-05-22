@@ -15,7 +15,7 @@
         "slide_fJYkpA": {
           "type": "slide",
           "settings": {
-            "slide_image": "shopify://shop_images/Ultra_HD_4K_3.png",
+            "slide_image": "shopify://shop_images/Ultra_HD_4K_4.png",
             "eyebrow": "Nutrición felina hecha con propósito",
             "heading": "Comida perfecta para tu gato",
             "subheading": "Preparado con amor felino y un toque gourmet",
@@ -66,6 +66,8 @@
       "settings": {
         "background_color": "#ffffff",
         "text_color": "#ffffff",
+        "heading_font": "Google Montserrat",
+        "body_font": "Google Open Sans",
         "slide_interval": 5000
       }
     },
