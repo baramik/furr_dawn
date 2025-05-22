@@ -177,14 +177,17 @@
   }
 {%- endstyle -%}
 
+{%- comment -%}
+  Mobile: slider is full screen minus header, text/button block is below slider and changes with the active slide
+{%- endcomment -%}
+
+{%- assign mobile_header_height = 64 -%}
+
 <div class='custom-slider-{{ section.id }}'>
   <div class='swiper'>
     <div class='swiper-wrapper'>
       {%- for block in section.blocks -%}
-        <div
-          class='swiper-slide'
-          {{ block.shopify_attributes }}
-        >
+        <div class='swiper-slide' {{ block.shopify_attributes }}>
           {%- if block.settings.slide_image -%}
             <picture>
               {%- if block.settings.mobile_slide_image -%}
@@ -238,6 +241,78 @@
   </div>
 </div>
 
+{%- comment -%} Mobile text/button block below slider, one per slide, only active is visible {%- endcomment -%}
+<div class='mobile-slider-blocks-wrapper'>
+  {%- for block in section.blocks -%}
+    <div class='mobile-slider-block' data-slide-index='{{ forloop.index0 }}' style='display:none'>
+      {%- if block.settings.eyebrow != blank -%}
+        <div class='slide-eyebrow'>{{ block.settings.eyebrow }}</div>
+      {%- endif -%}
+      {%- if block.settings.heading != blank -%}
+        <div class='slide-heading'>{{ block.settings.heading }}</div>
+      {%- endif -%}
+      {%- if block.settings.subheading != blank -%}
+        <div class='slide-subheading'>{{ block.settings.subheading }}</div>
+      {%- endif -%}
+      {%- if block.settings.button_label != blank and block.settings.button_link != blank -%}
+        <a
+          href='{{ block.settings.button_link }}'
+          class='slide-btn'
+          style='background: {{ block.settings.button_background_color }}; color: {{ block.settings.button_text_color }};'
+          onmouseover="this.style.background='{{ block.settings.button_background_color_hover }}'; this.style.color='{{ block.settings.button_text_color_hover }}';"
+          onmouseout="this.style.background='{{ block.settings.button_background_color }}'; this.style.color='{{ block.settings.button_text_color }}';"
+        >
+          {{ block.settings.button_label }}
+        </a>
+      {%- endif -%}
+    </div>
+  {%- endfor -%}
+</div>
+
+<style>
+  @media (max-width: 767px) {
+    .custom-slider-{{ section.id }} {
+      height: auto !important;
+      min-height: unset !important;
+      max-height: 400px;
+    }
+    .slide-content {
+      display: none !important;
+    }
+    .mobile-slider-blocks-wrapper {
+      width: 100%;
+    }
+    .mobile-slider-block {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem 1.5rem 1rem;
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      margin-bottom: 1.5rem;
+    }
+    .mobile-slider-block.active {
+      display: flex !important;
+    }
+    .mobile-slider-block .slide-heading {
+      font-size: 2.2rem;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    .mobile-slider-block .slide-subheading {
+      font-size: 1.1rem;
+      text-align: center;
+      margin-bottom: 1.2rem;
+    }
+    .mobile-slider-block .slide-btn {
+      font-size: 1.1rem;
+      padding: 1rem 2.5rem;
+      border-radius: 0.8rem;
+    }
+  }
+</style>
+
 <script defer>
   document.addEventListener('DOMContentLoaded', function () {
     var swiper = new Swiper('.custom-slider-{{ section.id }} .swiper', {
@@ -254,6 +329,36 @@
       },
       slidesPerView: 1,
       effect: 'slide',
+      on: {
+        init: function () {
+          syncMobileSliderBlock(this.realIndex);
+        },
+        slideChange: function () {
+          syncMobileSliderBlock(this.realIndex);
+        },
+      },
+    });
+
+    function syncMobileSliderBlock(activeIndex) {
+      if (window.innerWidth > 767) return;
+      var blocks = document.querySelectorAll('.mobile-slider-block');
+      blocks.forEach(function (block, idx) {
+        if (parseInt(block.getAttribute('data-slide-index')) === activeIndex) {
+          block.classList.add('active');
+        } else {
+          block.classList.remove('active');
+        }
+      });
+    }
+
+    // On resize, re-sync the block if needed
+    window.addEventListener('resize', function () {
+      if (window.innerWidth <= 767) {
+        var swiperInstance = document.querySelector('.custom-slider-{{ section.id }} .swiper').swiper;
+        if (swiperInstance) {
+          syncMobileSliderBlock(swiperInstance.realIndex);
+        }
+      }
     });
   });
 </script>
