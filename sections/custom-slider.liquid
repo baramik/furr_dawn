@@ -7,6 +7,29 @@
     @import url('https://fonts.googleapis.com/css2?family={{ section.settings.body_font | replace: ' ', '+' }}:wght@400;500;700&display=swap');
   {% endif %}
 
+  /* Custom Font Face Declarations */
+  {% if section.settings.custom_heading_font != blank %}
+    @font-face {
+      font-family: 'CustomHeadingFont';
+      src: url('{{ section.settings.custom_heading_font | file_url }}') format('woff2'),
+           url('{{ section.settings.custom_heading_font | file_url }}') format('woff');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+  {% endif %}
+
+  {% if section.settings.custom_body_font != blank %}
+    @font-face {
+      font-family: 'CustomBodyFont';
+      src: url('{{ section.settings.custom_body_font | file_url }}') format('woff2'),
+           url('{{ section.settings.custom_body_font | file_url }}') format('woff');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+  {% endif %}
+
   .custom-slider-{{ section.id }} {
     background-color: {{ section.settings.background_color }};
     position: relative;
@@ -100,7 +123,7 @@
   }
 
   .custom-slider-{{ section.id }} .slide-eyebrow {
-    font-family: {{ section.settings.body_font }}, sans-serif;
+    font-family: 'Kefir', sans-serif;
     font-size: 1.25rem;
     letter-spacing: 0.1em;
     opacity: 0.8;
@@ -109,7 +132,7 @@
   }
 
   .custom-slider-{{ section.id }} .slide-heading {
-    font-family: {{ section.settings.heading_font }}, sans-serif;
+    font-family: 'Kefir', sans-serif;
     font-size: 3.5rem;
     font-weight: 700;
     line-height: 1.1;
@@ -124,7 +147,7 @@
   }
 
   .custom-slider-{{ section.id }} .slide-subheading {
-    font-family: {{ section.settings.body_font }}, sans-serif;
+    font-family: 'Kefir', sans-serif;
     font-size: 1.5rem;
     font-weight: 400;
     margin-bottom: 1.5rem;
@@ -132,7 +155,7 @@
   }
 
   .custom-slider-{{ section.id }} .slide-btn {
-    font-family: {{ section.settings.body_font }}, sans-serif;
+    font-family: 'Kefir', sans-serif;
     padding: 1.5rem 4rem;
     border-radius: 1rem;
     font-weight: 700;
@@ -244,40 +267,24 @@
       "default": "#ffffff"
     },
     {
+      "type": "header",
+      "content": "Font Settings"
+    },
+    {
       "type": "select",
       "id": "heading_font",
       "label": "Heading Font",
       "options": [
         {
-          "value": "Arial",
-          "label": "Arial"
+          "value": "Kefir",
+          "label": "Kefir"
         },
         {
-          "value": "Google Montserrat",
-          "label": "Montserrat"
-        },
-        {
-          "value": "Google Playfair Display",
-          "label": "Playfair Display"
-        },
-        {
-          "value": "Google Roboto",
-          "label": "Roboto"
-        },
-        {
-          "value": "Google Open Sans",
-          "label": "Open Sans"
-        },
-        {
-          "value": "Google Lato",
-          "label": "Lato"
-        },
-        {
-          "value": "Google Poppins",
-          "label": "Poppins"
+          "value": "assistant_n4",
+          "label": "Assistant"
         }
       ],
-      "default": "Google Montserrat"
+      "default": "Kefir"
     },
     {
       "type": "select",
@@ -285,35 +292,15 @@
       "label": "Body Font",
       "options": [
         {
-          "value": "Arial",
-          "label": "Arial"
+          "value": "Kefir",
+          "label": "Kefir"
         },
         {
-          "value": "Google Montserrat",
-          "label": "Montserrat"
-        },
-        {
-          "value": "Google Playfair Display",
-          "label": "Playfair Display"
-        },
-        {
-          "value": "Google Roboto",
-          "label": "Roboto"
-        },
-        {
-          "value": "Google Open Sans",
-          "label": "Open Sans"
-        },
-        {
-          "value": "Google Lato",
-          "label": "Lato"
-        },
-        {
-          "value": "Google Poppins",
-          "label": "Poppins"
+          "value": "assistant_n4",
+          "label": "Assistant"
         }
       ],
-      "default": "Google Open Sans"
+      "default": "Kefir"
     },
     {
       "type": "number",
