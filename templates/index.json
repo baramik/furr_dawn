@@ -77,14 +77,27 @@
     "grid_sections_Ud8xpK": {
       "type": "grid-sections",
       "blocks": {
-        "grid_item_t9aQiX": {
+        "grid_item_XCtcTq": {
           "type": "grid_item",
           "settings": {
             "background_color": "#ffffff",
-            "heading": "Grid Item Heading",
-            "text": "<p>Share information about your brand or products.</p>",
-            "button_label": "Learn More",
-            "button_link": "",
+            "heading": "Colección de verano para perros",
+            "text": "<p>¡El verano llegó para todos, incluso para tu peludo!</p><p>Descubre nuestra <strong>colección de verano para perros</strong>, diseñada para mantener a tu mascota fresca, cómoda y con mucho estilo durante los días calurosos. Desde chalecos refrescantes hasta accesorios ligeros y coloridos, cada pieza está pensada para el bienestar y la diversión al aire libre.</p>",
+            "button_label": "Compra ahora",
+            "button_link": "shopify://collections/coleccion-verano-perros",
+            "button_color": "#000000",
+            "button_text_color": "#ffffff"
+          }
+        },
+        "grid_item_t9aQiX": {
+          "type": "grid_item",
+          "settings": {
+            "background_image": "shopify://shop_images/main-slide-4_3a4bcdf1-9b66-463a-874d-20027ccab9c3.webp",
+            "background_color": "#ffffff",
+            "heading": "La mejor comida para perros",
+            "text": "<p><strong>A los perros les encanta masticar, especialmente cosas que saben a carne de verdad.</strong></p>",
+            "button_label": "Compra ahora",
+            "button_link": "shopify://collections/comida-para-perros",
             "button_color": "#000000",
             "button_text_color": "#ffffff"
           }
@@ -92,17 +105,19 @@
         "grid_item_cpFUgM": {
           "type": "grid_item",
           "settings": {
+            "background_image": "shopify://shop_images/main-slide-3_71dbfe0a-fb92-4378-a5cb-f0b063b3da86.webp",
             "background_color": "#ffffff",
-            "heading": "Grid Item Heading",
-            "text": "<p>Share information about your brand or products.</p>",
-            "button_label": "Learn More",
-            "button_link": "",
+            "heading": "Alimentación sana para gatos",
+            "text": "<p>Cuida la salud de tu gato desde el plato. Nuestra comida saludable está formulada con ingredientes naturales, rica en proteínas y libre de aditivos artificiales. Ideal para gatos de todas las edades, ayuda a mantener su energía, digestión y pelaje en perfectas condiciones.</p>",
+            "button_label": "Compra ahora",
+            "button_link": "shopify://collections/comida-para-gatos",
             "button_color": "#000000",
             "button_text_color": "#ffffff"
           }
         }
       },
       "block_order": [
+        "grid_item_XCtcTq",
         "grid_item_t9aQiX",
         "grid_item_cpFUgM"
       ],
