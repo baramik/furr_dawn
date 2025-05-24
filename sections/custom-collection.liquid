@@ -21,13 +21,13 @@
       "type": "text",
       "id": "banner_heading",
       "label": "Banner Heading",
-      "default": "Collection Title"
+      "default": ""
     },
     {
       "type": "text",
       "id": "banner_subheading",
       "label": "Banner Subheading",
-      "default": "Collection description goes here"
+      "default": ""
     },
     {
       "type": "select",
@@ -84,9 +84,13 @@
         <div class='twcss-px-8 twcss-text-white'>
           {% if section.settings.banner_heading != blank %}
             <h1 class='twcss-text-4xl twcss-font-bold twcss-mb-4'>{{ section.settings.banner_heading }}</h1>
+          {% else %}
+            <h1 class='twcss-text-4xl twcss-font-bold twcss-mb-4'>{{ collection.title }}</h1>
           {% endif %}
           {% if section.settings.banner_subheading != blank %}
             <p class='twcss-text-xl'>{{ section.settings.banner_subheading }}</p>
+          {% else %}
+            <div class='twcss-text-xl'>{{ collection.description }}</div>
           {% endif %}
         </div>
       </div>

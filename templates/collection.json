@@ -4,8 +4,8 @@
       "type": "custom-collection",
       "settings": {
         "show_banner": true,
-        "banner_heading": "{{ collection.title }}",
-        "banner_subheading": "{{ collection.description }}",
+        "banner_heading": "",
+        "banner_subheading": "",
         "banner_alignment": "center",
         "columns_desktop": 4
       }
