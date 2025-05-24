@@ -1,0 +1,162 @@
+{% schema %}
+{
+  "name": "Custom Collection",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Banner Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_banner",
+      "label": "Show Banner",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "banner_image",
+      "label": "Banner Image"
+    },
+    {
+      "type": "text",
+      "id": "banner_heading",
+      "label": "Banner Heading",
+      "default": "Collection Title"
+    },
+    {
+      "type": "text",
+      "id": "banner_subheading",
+      "label": "Banner Subheading",
+      "default": "Collection description goes here"
+    },
+    {
+      "type": "select",
+      "id": "banner_alignment",
+      "label": "Banner Text Alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Grid Settings"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 4,
+      "label": "Number of columns on desktop"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Collection",
+      "category": "Collection"
+    }
+  ]
+}
+{% endschema %}
+
+<div class='twcss-container twcss-mx-auto twcss-px-4'>
+  {% if section.settings.show_banner and section.settings.banner_image %}
+    <div class='twcss-relative twcss-w-full twcss-h-[400px] twcss-mb-8'>
+      {{
+        section.settings.banner_image
+        | image_url: width: 2000
+        | image_tag: loading: 'lazy', class: 'twcss-w-full twcss-h-full twcss-object-cover'
+      }}
+      <div class='twcss-absolute twcss-inset-0 twcss-bg-black twcss-bg-opacity-30 twcss-flex twcss-items-center twcss-justify-{{ section.settings.banner_alignment }}'>
+        <div class='twcss-px-8 twcss-text-white'>
+          {% if section.settings.banner_heading != blank %}
+            <h1 class='twcss-text-4xl twcss-font-bold twcss-mb-4'>{{ section.settings.banner_heading }}</h1>
+          {% endif %}
+          {% if section.settings.banner_subheading != blank %}
+            <p class='twcss-text-xl'>{{ section.settings.banner_subheading }}</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+  <nav class='twcss-py-4 twcss-border-b twcss-border-gray-200'>
+    <ol class='twcss-flex twcss-items-center twcss-space-x-2 twcss-text-sm'>
+      <li>
+        <a href='/' class='twcss-text-gray-500 hover:twcss-text-gray-700'>Home</a>
+      </li>
+      <li class='twcss-text-gray-500'>/</li>
+      <li class='twcss-text-gray-900'>{{ collection.title }}</li>
+    </ol>
+  </nav>
+
+  <div class='twcss-grid twcss-grid-cols-1 sm:twcss-grid-cols-2 md:twcss-grid-cols-{{ section.settings.columns_desktop }} twcss-gap-6 twcss-mt-8'>
+    {% for product in collection.products %}
+      <div class='twcss-group'>
+        <div class='twcss-relative twcss-aspect-square twcss-overflow-hidden twcss-rounded-lg twcss-bg-gray-100'>
+          <a href='{{ product.url }}'>
+            {{
+              product.featured_image
+              | image_url: width: 600
+              | image_tag:
+                loading: 'lazy',
+                class: 'twcss-w-full twcss-h-full twcss-object-cover twcss-transition-transform twcss-duration-300 group-hover:twcss-scale-105'
+            }}
+          </a>
+          <button
+            class='twcss-absolute twcss-bottom-4 twcss-left-1/2 twcss-transform twcss--translate-x-1/2 twcss-bg-white twcss-text-gray-900 twcss-px-4 twcss-py-2 twcss-rounded-full twcss-opacity-0 group-hover:twcss-opacity-100 twcss-transition-opacity twcss-duration-300 twcss-shadow-lg'
+            onclick="addToCart('{{ product.variants.first.id }}')"
+          >
+            Quick Add
+          </button>
+        </div>
+        <div class='twcss-mt-4'>
+          <h3 class='twcss-text-lg twcss-font-medium twcss-text-gray-900'>
+            <a href='{{ product.url }}'>{{ product.title }}</a>
+          </h3>
+          <p class='twcss-mt-1 twcss-text-gray-500'>{{ product.price | money }}</p>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<script>
+  function addToCart(variantId) {
+    fetch('/cart/add.js', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        items: [
+          {
+            id: variantId,
+            quantity: 1,
+          },
+        ],
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // Optional: Show success message or update cart count
+        console.log('Added to cart:', data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  }
+</script>
