@@ -1,10 +1,20 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "custom-collection": {
       "type": "custom-collection",
       "settings": {
         "show_banner": true,
-        "banner_heading": "",
+        "banner_image": "shopify://shop_images/ICE-TOY_-Ice-Pop-_-Watermelon-Cooling-GF-PET-GF-Pet-Official-Online-Store-68983648.jpg",
+        "banner_heading": "Collection de verano",
         "banner_subheading": "",
         "banner_alignment": "center",
         "columns_desktop": 4
