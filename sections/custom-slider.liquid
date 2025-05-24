@@ -33,13 +33,13 @@
   .custom-slider-{{ section.id }} {
     background-color: {{ section.settings.background_color }};
     position: relative;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     min-height: 100vh;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    max-width: 100vw;
+    max-width: 100%;
     z-index: 1;
   }
 
@@ -47,6 +47,10 @@
   .custom-slider-{{ section.id }} .swiper {
     width: 100%;
     height: 100%;
+  }
+
+  .custom-slider-{{ section.id }} .swiper-pagination {
+    padding: 20px 0;
   }
 
   .custom-slider-{{ section.id }} .swiper-pagination-bullet {
